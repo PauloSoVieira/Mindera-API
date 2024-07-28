@@ -4,6 +4,7 @@ package Mindera.School.Mindera.controller;
 import Mindera.School.Mindera.dto.StudentCreationDto;
 import Mindera.School.Mindera.dto.StudentDto;
 import Mindera.School.Mindera.service.StudentService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,12 +25,14 @@ public class StudentController {
         this.studentService = studentService;
     }
 
+    @Operation(summary = "Get all students", description = "Returns all students in database")
     @GetMapping("/all")
     public ResponseEntity<List<StudentDto>> getAllStudents() {
         return new ResponseEntity<>(studentService.getAllStudents(), HttpStatus.OK);
     }
 
 
+    @Operation(summary = "Add new student", description = "Adds new student")
     @PostMapping("/")
     public ResponseEntity<StudentDto> addStudent(
             @Valid
@@ -40,18 +43,21 @@ public class StudentController {
 
     /********************************** Add student to course ***********************************/
 
+    @Operation(summary = "Add student to course", description = "Adds student to course")
     @PutMapping("/{id}/course/{courseId}")
     public ResponseEntity<StudentDto> addStudentToCourse(@PathVariable("id") Long id, @PathVariable("courseId") Long courseId) {
         return new ResponseEntity<>(studentService.addCourse(id, courseId), HttpStatus.OK);
     }
 
 
+    @Operation(summary = "Get student by ID", description = "Returns student by ID")
     @GetMapping("/{id}")
     public ResponseEntity<StudentDto> getStudentById(@PathVariable Long id) {
         return new ResponseEntity<>(studentService.getStudentById(id), HttpStatus.OK);
     }
 
 
+    @Operation(summary = "Delete student", description = "Deletes student by ID")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
         studentService.deleteStudent(id);
@@ -60,6 +66,7 @@ public class StudentController {
     }
 
 
+    @Operation(summary = "Update student", description = "Updates student by ID")
     @PutMapping("/{id}")
     public ResponseEntity<StudentDto> updateStudent(@RequestBody StudentDto studentDto, @PathVariable Long id) {
         StudentDto dto = studentService.updateStudent(studentDto, id);
