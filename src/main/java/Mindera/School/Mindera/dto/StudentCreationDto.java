@@ -11,6 +11,8 @@ import java.util.List;
 public class StudentCreationDto {
     private Long id;
     @NotEmpty
+
+    // @Pattern(regexp = "\\d+")
     private String name;
     private List<Course> courseNames;
 

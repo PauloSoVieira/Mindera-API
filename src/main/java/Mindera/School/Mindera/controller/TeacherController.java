@@ -30,7 +30,7 @@ public class TeacherController {
         return new ResponseEntity<>(teacherService.getTeacher(id), HttpStatus.OK);
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<TeacherDto> addNewTeacher(@RequestBody TeacherCreateDto teacherDto) {
         return new ResponseEntity<>(teacherService.addTeacher(teacherDto), HttpStatus.OK);
     }

@@ -9,5 +9,6 @@ public class CourseDto {
     private Long id;
     private String name;
 
-
+    public CourseDto() {
+    }
 }

@@ -11,7 +11,9 @@ import Mindera.School.Mindera.repository.StudentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -41,6 +43,7 @@ public class StudentService {
 
 
     public StudentDto addStudent(StudentCreationDto studentDto) {
+
         validation(studentDto);
         Student student = StudentMapper.INSTANCE.toModelCreating(studentDto);
         studentRepository.save(student);
@@ -53,6 +56,9 @@ public class StudentService {
     public void validation(StudentCreationDto studentDto) {
         if (studentDto.getName() == null || studentDto.getName().isEmpty()) {
             throw new StudentException(STUDENT_CANT_BE_NULL);
+        }
+        if (studentDto.getName().matches("[0-9]+") && studentDto.getName().length() > 1) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -90,6 +96,10 @@ public class StudentService {
     }
 
     public void deleteAllStudents() {
+
+
         studentRepository.deleteAll();
+        Integer deleted = getAllStudents().size();
+        logger.info("Deleted {} students", deleted);
     }
 }

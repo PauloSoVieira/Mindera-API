@@ -80,4 +80,7 @@ public class TeacherService {
     }
 
 
+    public void deleteAll() {
+        teacherRepository.deleteAll();
+    }
 }

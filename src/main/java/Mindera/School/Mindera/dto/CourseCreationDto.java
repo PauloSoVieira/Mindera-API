@@ -8,4 +8,11 @@ import lombok.Data;
 public class CourseCreationDto {
     private Long id;
     private String name;
+
+    public CourseCreationDto(String name) {
+        this.name = name;
+    }
+
+    public CourseCreationDto() {
+    }
 }
