@@ -15,10 +15,10 @@ class OpenApiConfig {
         return new OpenAPI()
                 .components(new Components())
                 .info(new Info()
-                        .title("Jobs API")
+                        .title("Mindera API")
                         .description("This is a simple API Application created to demonstrate the capabilities of Rest Assured for API Testing")
                         .version("1.0.0")
-                        .contact(new Contact().name("Sielei Herman").email("hsielei@gmail.com"))
+                        .contact(new Contact().name("Paulo Vieira").email("paulo92vieira@gmail.com"))
                 );
     }
 }
