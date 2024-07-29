@@ -74,4 +74,8 @@ public class CourseService {
         courseRepository.save(course);
         return CourseMapper.INSTANCE.toDto(course);
     }
+
+    public void deleteAllCourses() {
+        courseRepository.deleteAll();
+    }
 }

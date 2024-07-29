@@ -6,6 +6,7 @@ import Mindera.School.Mindera.dto.CourseDto;
 import Mindera.School.Mindera.repository.CourseRepository;
 import Mindera.School.Mindera.service.CourseService;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +43,7 @@ public class CourseController {
 
     @Operation(summary = "Add new course", description = "Adds new course")
     @PostMapping("/add")
-    public ResponseEntity<CourseDto> courseDto(@RequestBody CourseCreationDto courseDto) {
+    public ResponseEntity<CourseDto> courseDto(@Valid @RequestBody CourseCreationDto courseDto) {
         return new ResponseEntity<>(courseService.addNewCourse(courseDto), HttpStatus.OK);
     }
 
